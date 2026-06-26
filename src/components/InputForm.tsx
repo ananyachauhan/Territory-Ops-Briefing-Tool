@@ -11,9 +11,9 @@ interface InputFormProps {
 }
 
 const inputClass =
-  'w-full rounded-sm border border-tesla-border bg-white px-2.5 py-1.5 text-xs text-tesla-text placeholder:text-tesla-muted focus:border-tesla-blue focus:outline-none focus:ring-1 focus:ring-tesla-blue/30'
+  'w-full rounded-sm border border-tesla-border bg-white px-3 py-2.5 text-sm text-tesla-text placeholder:text-tesla-muted focus:border-tesla-blue focus:outline-none focus:ring-1 focus:ring-tesla-blue/30 lg:px-2.5 lg:py-1.5 lg:text-xs'
 
-const labelClass = 'mb-1 block text-[11px] font-medium text-tesla-text'
+const labelClass = 'mb-1.5 block text-xs font-medium text-tesla-text lg:mb-1 lg:text-[11px]'
 
 export function InputForm({ form, metrics, onChange, onSubmit, loading }: InputFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
@@ -22,7 +22,7 @@ export function InputForm({ form, metrics, onChange, onSubmit, loading }: InputF
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col gap-2.5">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 lg:h-full lg:min-h-0 lg:gap-2.5">
       <div className="shrink-0">
         <label htmlFor="businessGoal" className={labelClass}>
           Business goal
@@ -37,7 +37,7 @@ export function InputForm({ form, metrics, onChange, onSubmit, loading }: InputF
         />
       </div>
 
-      <div className="grid shrink-0 grid-cols-2 gap-2.5">
+      <div className="grid shrink-0 grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-2.5">
         <div>
           <label htmlFor="revenueTarget" className={labelClass}>
             Revenue target ($)
@@ -134,7 +134,7 @@ export function InputForm({ form, metrics, onChange, onSubmit, loading }: InputF
       <button
         type="submit"
         disabled={loading}
-        className="mt-auto shrink-0 rounded-sm bg-tesla-blue py-2.5 text-xs font-semibold tracking-wide text-white uppercase transition-colors hover:bg-[#3457b1] disabled:cursor-not-allowed disabled:opacity-50"
+        className="shrink-0 rounded-sm bg-tesla-blue py-3.5 text-sm font-semibold tracking-wide text-white uppercase transition-colors hover:bg-[#3457b1] disabled:cursor-not-allowed disabled:opacity-50 lg:mt-auto lg:py-2.5 lg:text-xs"
       >
         {loading ? 'Generating…' : 'Generate Briefings'}
       </button>

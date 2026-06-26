@@ -20,11 +20,11 @@ const riskStyles: Record<RiskLevel, string> = {
 
 export function MetricsPreview({ metrics }: MetricsPreviewProps) {
   return (
-    <div className="shrink-0 rounded-sm border border-tesla-border border-l-[3px] border-l-tesla-red bg-tesla-surface/60 px-2.5 py-2">
-      <p className="mb-1.5 text-[11px] font-semibold tracking-wide text-tesla-blue uppercase">
+    <div className="shrink-0 rounded-sm border border-tesla-border border-l-[3px] border-l-tesla-red bg-tesla-surface/60 px-3 py-3 lg:px-2.5 lg:py-2">
+      <p className="mb-2 text-xs font-semibold tracking-wide text-tesla-blue uppercase lg:mb-1.5 lg:text-[11px]">
         Calculated Metrics
       </p>
-      <dl className="grid grid-cols-2 gap-x-3 gap-y-1 text-[11px] text-tesla-text">
+      <dl className="grid grid-cols-1 gap-2 text-xs text-tesla-text lg:grid-cols-2 lg:gap-x-3 lg:gap-y-1 lg:text-[11px]">
         <div className="flex items-center justify-between gap-2">
           <dt className="text-tesla-muted">Scenario</dt>
           <dd>

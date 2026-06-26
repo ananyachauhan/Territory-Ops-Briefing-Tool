@@ -104,11 +104,11 @@ function App() {
   }
 
   return (
-    <div className="flex h-svh flex-col overflow-hidden">
+    <div className="flex min-h-svh flex-col lg:h-svh lg:overflow-hidden">
       <Header />
 
-      <main className="grid min-h-0 flex-1 grid-cols-[minmax(300px,380px)_1fr] gap-3 p-3">
-        <section className="flex min-h-0 flex-col overflow-y-auto rounded-sm border border-tesla-border bg-white p-3 shadow-sm">
+      <main className="flex flex-1 flex-col gap-4 p-4 lg:grid lg:min-h-0 lg:grid-cols-[minmax(300px,380px)_1fr] lg:gap-3 lg:p-3">
+        <section className="flex flex-col rounded-sm border border-tesla-border bg-white p-4 shadow-sm lg:min-h-0 lg:overflow-y-auto lg:p-3">
           <InputForm
             form={form}
             metrics={metricsPreview}
@@ -117,11 +117,11 @@ function App() {
             loading={loading}
           />
           {error && (
-            <p className="mt-2 shrink-0 text-[11px] text-tesla-red">{error}</p>
+            <p className="mt-2 shrink-0 text-xs text-tesla-red lg:text-[11px]">{error}</p>
           )}
         </section>
 
-        <section className="flex min-h-0 flex-col gap-3">
+        <section className="flex flex-col gap-4 lg:min-h-0 lg:gap-3">
           <BriefingCard
             label="Leadership Briefing"
             text={briefings.leadership}
@@ -139,8 +139,8 @@ function App() {
         </section>
       </main>
 
-      <footer className="shrink-0 border-t border-tesla-border bg-tesla-bg px-6 py-2">
-        <p className="text-center text-[11px] text-tesla-muted">
+      <footer className="shrink-0 border-t border-tesla-border bg-tesla-bg px-4 py-3 lg:px-6 lg:py-2">
+        <p className="text-center text-xs leading-relaxed text-tesla-muted lg:text-[11px]">
           © Created by someone who aspires to work at Tesla
         </p>
       </footer>

@@ -30,3 +30,14 @@ body {
   height: 100svh;
   overflow: hidden;
 }
+
+@media (max-width: 1023px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100svh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
