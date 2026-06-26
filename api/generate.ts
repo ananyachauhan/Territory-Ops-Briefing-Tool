@@ -1,15 +1,13 @@
-import cors from 'cors'
-import 'dotenv/config'
-import express from 'express'
-import { generateBriefing } from './generateBriefing'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
+import { generateBriefing } from '../server/generateBriefing'
 
-const app = express()
-const PORT = 3001
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST')
+    res.status(405).json({ error: 'Method not allowed' })
+    return
+  }
 
-app.use(cors())
-app.use(express.json())
-
-app.post('/api/generate', async (req, res) => {
   const apiKey = process.env.GROQ_API_KEY
   if (!apiKey) {
     res.status(500).json({ error: 'GROQ_API_KEY is not configured' })
@@ -28,14 +26,10 @@ app.post('/api/generate', async (req, res) => {
 
   try {
     const result = await generateBriefing(systemPrompt, userMessage, apiKey)
-    res.json(result)
+    res.status(200).json(result)
   } catch (error) {
     const message =
       error instanceof Error ? error.message : 'Failed to generate briefing'
     res.status(500).json({ error: message })
   }
-})
-
-app.listen(PORT, () => {
-  console.log(`API server running on http://localhost:${PORT}`)
-})
+}

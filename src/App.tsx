@@ -58,10 +58,29 @@ function App() {
         }),
       })
 
-      const data = await response.json()
+      const contentType = response.headers.get('content-type') ?? ''
+      const raw = await response.text()
+
+      if (!contentType.includes('application/json')) {
+        throw new Error(
+          response.ok
+            ? 'Server returned an unexpected response.'
+            : 'API route not found. Redeploy with the latest code and set GROQ_API_KEY in Vercel.',
+        )
+      }
+
+      const data = JSON.parse(raw) as {
+        error?: string
+        leadership?: string
+        technician?: string
+      }
 
       if (!response.ok) {
         throw new Error(data.error ?? 'Failed to generate briefing')
+      }
+
+      if (!data.leadership || !data.technician) {
+        throw new Error('Response missing leadership or technician fields')
       }
 
       setBriefings({
