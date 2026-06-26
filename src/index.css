@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-tesla-bg: #ffffff;
+  --color-tesla-surface: #f4f4f4;
+  --color-tesla-text: #171a20;
+  --color-tesla-red: #e31937;
+  --color-tesla-blue: #3e6ae1;
+  --color-tesla-border: #d0d1d2;
+  --color-tesla-muted: #5c5e62;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f4f4f4;
+  color: #171a20;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100svh;
+  overflow: hidden;
+}
