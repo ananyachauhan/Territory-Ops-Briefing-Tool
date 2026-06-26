@@ -18,7 +18,11 @@ export interface ParsedFormData {
   workingDaysRemaining: number
 }
 
-export type ScenarioType = 'NEW_TERRITORY' | 'RECOVERY' | 'MINOR_GAP'
+export type ScenarioType =
+  | 'NEW_TERRITORY'
+  | 'RECOVERY'
+  | 'MINOR_GAP'
+  | 'AHEAD_OF_PACE'
 export type RiskLevel = 'Low' | 'Medium' | 'High'
 
 export interface CalculatedMetrics {

@@ -9,6 +9,7 @@ const scenarioStyles: Record<ScenarioType, string> = {
   NEW_TERRITORY: 'bg-tesla-blue/10 text-tesla-blue',
   RECOVERY: 'bg-tesla-red/10 text-tesla-red',
   MINOR_GAP: 'bg-emerald-50 text-emerald-700',
+  AHEAD_OF_PACE: 'bg-emerald-50 text-emerald-700',
 }
 
 const riskStyles: Record<RiskLevel, string> = {
@@ -53,8 +54,16 @@ export function MetricsPreview({ metrics }: MetricsPreviewProps) {
           <dd>{formatNumber(metrics.dailyTeamJobs)}</dd>
         </div>
         <div className="flex justify-between gap-2">
-          <dt className="text-tesla-muted">Throughput ↑</dt>
-          <dd className="font-medium text-tesla-red">{metrics.throughputIncreasePercent}%</dd>
+          <dt className="text-tesla-muted">
+            {metrics.scenarioType === 'AHEAD_OF_PACE' ? 'Throughput' : 'Throughput ↑'}
+          </dt>
+          <dd
+            className={`font-medium ${metrics.scenarioType === 'AHEAD_OF_PACE' ? 'text-emerald-600' : 'text-tesla-red'}`}
+          >
+            {metrics.scenarioType === 'AHEAD_OF_PACE'
+              ? 'On pace'
+              : `${metrics.throughputIncreasePercent}%`}
+          </dd>
         </div>
         <div className="flex justify-between gap-2">
           <dt className="text-tesla-muted">Forecast</dt>

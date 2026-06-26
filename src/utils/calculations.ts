@@ -93,29 +93,39 @@ export function calculateMetrics(form: ParsedFormData): CalculatedMetrics {
   )
   const dailyTeamJobs = dailyTargetPerTech * form.numberOfTechnicians
   const currentJobsPerTech = form.currentJobsPerDay / form.numberOfTechnicians
-  const throughputIncreasePercent =
-    form.currentJobsPerDay === 0
-      ? 100
-      : Math.round(
-          ((dailyTeamJobs - form.currentJobsPerDay) / form.currentJobsPerDay) * 100,
-        )
   const forecastRevenue = Math.round(
     form.currentRevenue +
       form.currentJobsPerDay * form.workingDaysRemaining * form.averageRevenuePerJob,
   )
 
+  const aheadOfPace = dailyTeamJobs <= form.currentJobsPerDay
+
+  let throughputIncreasePercent =
+    form.currentJobsPerDay === 0
+      ? 100
+      : Math.round(
+          ((dailyTeamJobs - form.currentJobsPerDay) / form.currentJobsPerDay) * 100,
+        )
+
   let riskLevel: RiskLevel = 'Low'
-  if (throughputIncreasePercent > 30) {
+  let scenarioType: ScenarioType = 'MINOR_GAP'
+
+  if (aheadOfPace) {
+    throughputIncreasePercent = 0
+    riskLevel = 'Low'
+    scenarioType = 'AHEAD_OF_PACE'
+  } else if (form.currentRevenue === 0) {
+    scenarioType = 'NEW_TERRITORY'
+    if (throughputIncreasePercent > 30) {
+      riskLevel = 'High'
+    } else if (throughputIncreasePercent > 15) {
+      riskLevel = 'Medium'
+    }
+  } else if (throughputIncreasePercent > 30) {
+    scenarioType = 'RECOVERY'
     riskLevel = 'High'
   } else if (throughputIncreasePercent > 15) {
     riskLevel = 'Medium'
-  }
-
-  let scenarioType: ScenarioType = 'MINOR_GAP'
-  if (form.currentRevenue === 0) {
-    scenarioType = 'NEW_TERRITORY'
-  } else if (throughputIncreasePercent > 30) {
-    scenarioType = 'RECOVERY'
   }
 
   return {
