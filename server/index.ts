@@ -1,7 +1,7 @@
 import cors from 'cors'
 import 'dotenv/config'
 import express from 'express'
-import { generateBriefing } from '../api/lib/generateBriefing'
+import { generateBriefing } from '../api/generate.ts'
 
 const app = express()
 const PORT = 3001
