@@ -21,9 +21,24 @@ export function Header() {
           </p>
         </nav>
 
-        <p className="text-xs text-tesla-muted">
-          Powered by <span className="font-medium text-tesla-blue">Groq</span>
-        </p>
+        <button
+          type="button"
+          aria-label="Profile"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-tesla-border text-tesla-text transition-colors hover:border-tesla-text"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="h-5 w-5"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
       <div className="h-0.5 bg-gradient-to-r from-tesla-red via-tesla-blue to-tesla-red" />
     </header>

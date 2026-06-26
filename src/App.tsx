@@ -119,6 +119,12 @@ function App() {
           />
         </section>
       </main>
+
+      <footer className="shrink-0 border-t border-tesla-border bg-tesla-bg px-6 py-2">
+        <p className="text-center text-[11px] text-tesla-muted">
+          © Created by someone who aspires to work at Tesla
+        </p>
+      </footer>
     </div>
   )
 }
